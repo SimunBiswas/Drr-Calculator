@@ -42,6 +42,7 @@ const MyForm = () => {
   const daysOfCount = useSelector((state) => state.data.daysOfCount);
 
   useEffect(() => {
+   
     const fetchData = async () => {
       try {
         dispatch(setLoading(true));
