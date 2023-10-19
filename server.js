@@ -76,13 +76,12 @@ app.delete("/api/data/:id", (req, res) => {
 
 module.exports.handler = async (event, context) => {
   return await new Promise((resolve, reject) => {
-    const handler = app.run(event, context, (err, result) => {
+    app.handle(event, context, (err, result) => {
       if (err) {
         reject(err);
       } else {
         resolve(result);
       }
     });
-    handler(event, context);
   });
 };
