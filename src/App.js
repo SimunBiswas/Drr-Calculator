@@ -42,10 +42,11 @@ const MyForm = () => {
   const daysOfCount = useSelector((state) => state.data.daysOfCount);
 
   useEffect(() => {
+   
     const fetchData = async () => {
       try {
         dispatch(setLoading(true));
-        const response = await fetch("https://your-netlify-site.netlify.app/.netlify/functions/server");
+        const response = await fetch("http://localhost:8000/api/data");
         const newData = await response.json();
 
         const processedData = newData.map((item) => {
@@ -132,7 +133,7 @@ const MyForm = () => {
       dispatch(setLoading(true));
 
       // Make the API call
-      const response = await fetch("/.netlify/functions/upload", {
+      const response = await fetch("http://localhost:8000/api/data", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...formData, ...dates, id: nanoid() }),
@@ -156,10 +157,7 @@ const MyForm = () => {
   const handleDelete = async (id) => {
     try {
       dispatch(setLoading(true));
-      await fetch(
-        `https://your-netlify-site.netlify.app/.netlify/functions/server/api/data/${id}`,
-        { method: "DELETE" }
-      );
+      await fetch(`http://localhost:8000/api/data/${id}`, { method: "DELETE" });
       dispatch(deleteData(id));
     } catch (error) {
       console.error("Error deleting data:", error);
@@ -291,6 +289,7 @@ const MyForm = () => {
                       month: "numeric",
                       day: "numeric",
                     })}
+                    
                   </td>
 
                   <td>
