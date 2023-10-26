@@ -303,6 +303,9 @@ const MyForm = () => {
           </table>
         )}
       </div>
+      <div>
+        <h3>Warning : </h3><p>Make sure to run "node server.js" in the terminal, to have local API.</p>
+      </div>
     </form>
   );
 };
